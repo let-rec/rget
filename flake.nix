@@ -25,7 +25,6 @@
           buildInputs = [ yt-dlp ];
           meta = with pkgs.lib; {
             description = "CLI to download YouTube videos or files";
-            license = license.mit;
             maintainers = with maintainers; [ ];
           };
         };
