@@ -17,7 +17,6 @@
       system: let 
         pkgs = nixpkgs.legacyPackages.${system};
 
-        adef = apps.default;
         rget = pkgs.rustPlatform.buildRustPackage {
           pname = "rget";
           version = "0.1.0";
@@ -35,8 +34,8 @@
         devShells.default = import ./shell.nix {inherit pkgs;};
         packages.default = rget;
 
-        adef = {
-          flake-utils.lib.mkApp { drv = rget };
+        apps.default = {
+          flake-utils.lib.mkApp = { drv = rget; };
           type = "app";
           program = "${self.packages.${system}.default}/bin/rget";
         };
