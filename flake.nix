@@ -22,11 +22,18 @@
           version = "0.1.0";
           src = ./.;
           cargoLock.lockFile = ./Cargo.lock;
-          buildInputs = [ yt-dlp ];
+          buildInputs = [ 
+            yt-dlp
+            pkgs.openssl
+          ];
           meta = with pkgs.lib; {
             description = "CLI to download YouTube videos or files";
             maintainers = with maintainers; [ ];
           };
+          nativeBuildInputs = with pkgs; [
+            pkg-config
+          ];
+          PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
         };
         yt-dlp = pkgs.yt-dlp;
       in {
